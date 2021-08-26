@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Signika:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Archivo&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <title>Quizy</title>
+  <style>
+    * {
+      margin: 0;
+    }
+    body {
+      text-align: center;
+    }
+    .navbar {
+      width: 100%;
+      background-color: #f5d56c;
+      overflow: hidden;
+      position: absolute;
+      height: 80px;
+      display: block;
+    }
+    .logo {
+      width: 10%;
+      float: left;
+    }
+    .menu {
+      width: 50%;
+      float: right;
+      text-align: right;
+      padding-top: 20px;
+    }
+    .page {
+      float: center;
+      font-size: 16px;
+      color: black;
+      text-align: center;
+      padding: 7px 25px;
+      text-decoration: none;
+      display: inline-block;
+      transition: 0.5s;
+      margin: 5px;
+      border-radius: 25px;
+    }
+    .page:hover {
+      color: white;
+      background-image: url("../assets/wood.jpeg");
+    }
+
+    .container {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+      padding-top: 120px;
+    }
+    .cent {
+      background-color: rgb(255, 255, 255, 0.5);
+      width: 100%;
+      float: center;
+    }
+    .container h1 {
+      font-family: "Architects Daughter", cursive;
+      padding-bottom: 10px;
+      font-size: 54px;
+      width: 100%;
+      letter-spacing: 2px;
+    }
+    .quiz {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 30px;
+    }
+    .matching {
+      margin: auto;
+      float: center;
+    }
+    .choice {
+      float: center;
+      text-align: center;
+      margin: auto;
+      margin-top: 50px;
+    }
+    .fill {
+      float: center;
+      text-align: center;
+      margin: auto;
+      margin-top: 50px;
+    }
+    .truefalse {
+      float: center;
+      text-align: center;
+      margin: auto;
+      margin-top: 50px;
+    }
+    .left {
+      float: left;
+      text-align: left;
+      padding-right: 100px;
+    }
+    .right {
+      float: right;
+      text-align: left;
+      padding-left: 100px;
+    }
+  </style>
+
+  <body>
+    <div class="navbar">
+      <div class="logo">
+        <img
+          src="../assets/logo.png"
+          width="175"
+          height="75"
+          style="padding: 10px"
+        />
+      </div>
+      <div class="menu">
+        <a class="page" id="item1" onclick="stop()">Home</a>
+        <a class="page" id="item2" onclick="stop()">Study</a>
+        <a class="page" id="item3" onclick="stop()">Test</a>
+        <a class="page" id="item4" onclick="stop()">History</a>
+      </div>
+    </div>
+    <div class="container">
+      <h1>Quiz</h1>
+      <p>Good luck {{name}}</p>
+    </div>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="quiz">
+        <p>Name: <input type="text" value="{{name}}" name="Name" readonly /></p>
+        <input type="hidden" value="{{timestamp}}" name="timestamp" />
+        {% if mt %}
+        <div class="matching">
+          <h2 style="font-family: 'Alegreya Sans', sans-serif">Matching</h2>
+          <div class="left">
+            {% for q in mt_q %}
+            <p>
+              <input
+                type="text"
+                style="width: 20px; margin-right: 10px"
+                id="choices"
+                name="{{q}}"
+              />{{q}}
+            </p>
+            {%endfor%}
+          </div>
+          <div class="right">
+            {% for a in mt_a%}
+            <p>{{a}}</p>
+            {%endfor%}
+          </div>
+        </div>
+        {% endif %} {% if mc %}
+        <div class="choice">
+          <h2 style="font-family: 'Alegreya Sans', sans-serif">
+            Multiple-choice
+          </h2>
+          {% for q,ans in mca.items %}
+          <p style="text-align: left">{{q}}</p>
+          {% for a in ans%}
+          <div class="form-check">
+            <p style="text-align: left">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="{{q}}"
+                value="{{a}}"
+                id="flexRadioDefault1"
+              />{{a}}
+            </p>
+          </div>
+          {%endfor%} {%endfor%}
+        </div>
+        {% endif %} {% if fb %}
+        <div class="fill">
+          <h2 style="font-family: 'Alegreya Sans', sans-serif">
+            Fill In The Blanks
+          </h2>
+          {% for q in fb_q%}
+          <p style="text-align: left">
+            {{q}}<input
+              type="text"
+              name="{{q}}"
+              style="text-align: right; margin-left: 20px"
+            />
+          </p>
+          {%endfor%}
+        </div>
+        {%endif%} {%if tf%}
+        <div class="truefalse">
+          <h2 style="font-family: 'Alegreya Sans', sans-serif">True/False</h2>
+          {% for q in tf_q %}
+          <p style="text-align: left">
+            {{q}}
+            <input
+              type="text"
+              style="width: 20px; margin-left: 20px"
+              id="choices"
+              name="{{q}}"
+            />
+          </p>
+          {%endfor%}
+        </div>
+        {%endif%}
+      </div>
+      <button type="submit" class="btn btn-primary" style="margin-bottom: 20px">
+        Submit for grading
+      </button>
+    </form>
+  </body>
+  <script>
+    function stop() {
+      alert("Not accessible during test!");
+    }
+  </script>
+</html>

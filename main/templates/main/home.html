@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Signika:wght@300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <title>Quizy</title>
+  <style>
+    * {
+      margin: 0;
+    }
+    .navbar {
+      width: 100%;
+      background-color: white;
+      overflow: hidden;
+      position: fixed;
+      height: 80px;
+      display: block;
+    }
+    .logo {
+      width: 30%;
+      float: left;
+    }
+    .menu {
+      width: 50%;
+      float: right;
+      text-align: right;
+      padding-top: 20px;
+    }
+    .page {
+      float: center;
+      font-size: 16px;
+      color: black;
+      text-align: center;
+      padding: 7px 25px;
+      text-decoration: none;
+      display: inline-block;
+      transition: 0.5s;
+      margin: 5px;
+      border-radius: 25px;
+    }
+    .page:hover {
+      color: white;
+      background-image: url("assets/wood.jpeg");
+    }
+
+    .container {
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      padding-top: 170px;
+    }
+    .cent {
+      background-color: rgb(255, 255, 255, 0.5);
+      width: 50%;
+      float: center;
+    }
+    .cent h1 {
+      font-family: "Architects Daughter", cursive;
+      padding-bottom: 40px;
+      font-size: 72px;
+      letter-spacing: 5px;
+    }
+    .cent p {
+      font-size: 36px;
+      font-family: "Signika", sans-serif;
+      letter-spacing: 1px;
+      padding-bottom: 10px;
+    }
+    .content {
+      background-color: white;
+      width: 100%;
+      margin: 75px 0px 0px 0px;
+      text-align: center;
+      padding: 10px 0px 10px 0px;
+      line-height: 90px;
+    }
+  </style>
+
+  <body
+    style="
+      background-image: url('assets/bg1.png');
+      background-size: cover;
+      background-attachment: fixed;
+    "
+  >
+    <div class="navbar">
+      <div class="logo">
+        <img
+          src="assets/logo.png"
+          width="150"
+          height="50"
+          style="padding: 10px"
+        />
+      </div>
+      <div class="menu">
+        <a class="page" id="item1">Home</a>
+        <a class="page" id="item2" href="/study">Study</a>
+        <a class="page" id="item3" href="/test">Test</a>
+        <a class="page" id="item4" href="/history">History</a>
+      </div>
+    </div>
+    <div class="container">
+      <div class="cent">
+        <h1>Quizzy</h1>
+        <p>Quizzing Easy!</p>
+      </div>
+    </div>
+    <div class="content">
+      <h1>A Mini-Quiz Platform</h1>
+      <p style="margin: 40px">
+        Use this platform to study various topics and test yourself. Track your
+        results over time and see how you improve!
+      </p>
+    </div>
+  </body>
+</html>
