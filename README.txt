@@ -7,11 +7,10 @@ results and details on correct answers vs. the user's answers.
 
 What I used to create this project:
 - Python
-- Django Framework
+- Django Framework (backend)
 - Relational Database (SQLITE)
 - HTML/CSS/JS for User Interface
 
-Copyrighted Material:
+Copyrighted Material?
 - All images utilized were open-source
-- I designed all the questions myself
-- No templates used, I designed the webpages myself
+- No templates used
